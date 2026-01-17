@@ -3,25 +3,47 @@
 import type React from "react"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Menu, X, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+type NavItem = {
+  label: string
+  href: string
+  type: "anchor" | "route"
+}
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const navItems = [
-    { label: "Lý thuyết", href: "#theory" },
-    { label: "Giải thích", href: "#explanation" },
-    { label: "Phân tích", href: "#analysis" },
-    { label: "Kết luận", href: "#conclusion" },
+  const pathname = usePathname()
+
+  const navItems: NavItem[] = [
+    { label: "Lý thuyết", href: "#theory", type: "anchor" },
+    { label: "Giải thích", href: "#explanation", type: "anchor" },
+    { label: "Phân tích", href: "#analysis", type: "anchor" },
+    { label: "Kết luận", href: "#conclusion", type: "anchor" },
+    { label: "Game", href: "/game", type: "route" },
   ]
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    if (item.type === "anchor") {
+      e.preventDefault()
+
+      if (pathname === "/") {
+        const element = document.querySelector(item.href)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      } else {
+        window.location.href = "/" + item.href
+      }
+
+      setIsOpen(false)
+      return
     }
+
+    // Route navigation
     setIsOpen(false)
   }
 
@@ -40,7 +62,7 @@ export function Navigation() {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item)}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
@@ -62,7 +84,7 @@ export function Navigation() {
                 key={item.href}
                 href={item.href}
                 className="block py-2 text-muted-foreground hover:text-primary transition-colors"
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item)}
               >
                 {item.label}
               </a>
