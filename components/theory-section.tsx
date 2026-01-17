@@ -15,6 +15,7 @@ export function TheorySection() {
       icon: BookOpen,
       title: "Tính chất của thời kỳ quá độ",
       image: "/images/image.png",
+      source: "https://thanhuyhanoi.vn/tin-tuc/xay-dung-dang/nhan-thuc-cua-dang-ta-ve-thoi-ky-qua-do-len-chu-nghia-xa-hoi-o-viet-nam-10017946.html",
       content: [
         "Đây là cuộc cách mạng cải biến sâu sắc nhất nhưng cũng phức tạp, lâu dài, khó khăn và gian khổ nhất.",
         "Phải thay đổi triệt để những nếp sống, thói quen cũ kỹ đã bén rễ hàng ngàn năm.",
@@ -31,6 +32,7 @@ export function TheorySection() {
       icon: Flag,
       title: "Đặc điểm lớn nhất của Việt Nam",
       image: "https://daknong.1cdn.vn/2021/07/22/baodaknong.org.vn-database-image-2021-07-22-_cnxh.jpg",
+      source: "https://baolamdong.vn/qua-do-len-chu-nghia-xa-hoi-la-tat-yeu-va-lau-dai-71426.html",
       content: [
         "Tiến thẳng lên CNXH từ một nước nông nghiệp lạc hậu, không kinh qua giai đoạn phát triển tư bản chủ nghĩa.",
         "Xã hội tồn tại sự đan xen giữa những yếu tố cũ và những yếu tố mới đang nảy sinh.",
@@ -47,6 +49,7 @@ export function TheorySection() {
       icon: Target,
       title: "Nhiệm vụ trọng tâm",
       image: "https://s-aicmscdn.vietnamhoinhap.vn/vnhn-media/24/1/16/xdcnxh_65a5e607f33e7.jpg",
+      source: "https://vietnamhoinhap.vn/vi/thoi-ky-qua-do-len-chu-nghia-xa-hoi-o-viet-nam-trong-tac-pham-mot-so-van-de-ly-luan-va-thuc-tien-ve-chu-nghia-xa-hoi-va-con-duong-di-len-chu-nghia-xa-hoi-o-viet-nam-cua-tong-bi-thu-nguyen-phu-trong-46541.htm",
       content: [
         "Về chính trị: Xây dựng chế độ dân chủ, bồi dưỡng năng lực làm chủ của nhân dân.",
         "Về kinh tế: Cải tạo nền kinh tế cũ, xây dựng nền kinh tế mới có công nghiệp và nông nghiệp hiện đại.",
@@ -69,7 +72,7 @@ export function TheorySection() {
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Chuyên mục 1</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Lý thuyết cốt lõi</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Quá độ là gì? Các luận điểm then chốt trong tư tưởng Hồ Chí Minh về thời kỳ quá độ
+            Quá độ là gì ? Các luận điểm then chốt trong tư tưởng Hồ Chí Minh về thời kỳ quá độ
           </p>
         </div>
 
@@ -95,8 +98,9 @@ export function TheorySection() {
         </div>
 
         {/* Content */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6 items-start">
+          {/* Left: Image */}
+          <div className="space-y-3">
             <div className="relative w-full h-48 md:h-56 rounded-xl overflow-hidden">
               <Image
                 src={currentTab.image || "/placeholder.svg"}
@@ -106,41 +110,37 @@ export function TheorySection() {
                 unoptimized
               />
             </div>
-
-            <Card className="border-2 border-primary/20">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <IconComponent className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{currentTab.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-4">
-                  {currentTab.content.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-foreground leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            {currentTab.source && (
+              <a
+                href={currentTab.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary hover:underline break-all line-clamp-2"
+              >
+                {currentTab.source}
+              </a>
+            )}
           </div>
 
-          {/* Quote Card */}
-          <Card className="bg-primary text-primary-foreground border-0 h-fit">
-            <CardContent className="p-6 md:p-8 flex flex-col justify-center">
-              <div className="mb-4">
-                <svg className="h-10 w-10 opacity-50" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
+          {/* Right: Content Card */}
+          <Card className="border-2 border-primary/20">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <IconComponent className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-xl">{currentTab.title}</CardTitle>
               </div>
-              <blockquote className="text-lg md:text-xl font-medium leading-relaxed mb-4">
-                {currentTab.quote.text}
-              </blockquote>
-              <cite className="text-sm opacity-80 not-italic">— {currentTab.quote.source}</cite>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                {currentTab.content.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         </div>

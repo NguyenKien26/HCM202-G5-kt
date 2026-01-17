@@ -28,7 +28,7 @@ export function QuestionSection() {
                   <ArrowRight className="h-5 w-5 text-primary" />
                   <p className="text-base">
                     Vậy bỏ qua chủ nghĩa tư bản có nghĩa là gì, và tại sao đây là sự lựa chọn phù hợp với đặc điểm lịch
-                    sử – xã hội của Việt Nam?
+                    sử – xã hội của Việt Nam ?
                   </p>
                 </div>
               </div>

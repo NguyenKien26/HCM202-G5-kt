@@ -150,15 +150,7 @@ export function AnalysisSection() {
           </CardContent>
         </Card>
 
-        {/* Quote */}
-        <div className="mt-8 text-center">
-          <Card className="inline-block bg-primary text-primary-foreground border-0">
-            <CardContent className="p-6">
-              <blockquote className="text-lg font-medium italic">{'"Đảng ta là đạo đức, là văn minh"'}</blockquote>
-              <cite className="block mt-2 text-sm opacity-80 not-italic">— Hồ Chí Minh</cite>
-            </CardContent>
-          </Card>
-        </div>
+        {/* Red quote card removed as requested */}
       </div>
     </section>
   )

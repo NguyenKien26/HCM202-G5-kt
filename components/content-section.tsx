@@ -25,10 +25,10 @@ export function ContentSection() {
     },
     {
       id: "meaning",
-      title: "Ý nghĩa 'bỏ qua'",
+      title: "Ý nghĩa bỏ qua",
       icon: Lightbulb,
       content: {
-        main: '"Bỏ qua chế độ tư bản chủ nghĩa" không có nghĩa là phủ nhận hoàn toàn mọi thành tựu của chủ nghĩa tư bản, mà là bỏ qua việc thiết lập vị trí thống trị của quan hệ sản xuất tư bản chủ nghĩa.',
+        main: "Bỏ qua chế độ tư bản chủ nghĩa không có nghĩa là phủ nhận hoàn toàn mọi thành tựu của chủ nghĩa tư bản,\nMà là bỏ qua việc thiết lập vị trí thống trị của quan hệ sản xuất tư bản chủ nghĩa.",
         points: [
           "Bỏ qua việc xác lập vị trí thống trị của quan hệ sản xuất và kiến trúc thượng tầng tư bản chủ nghĩa",
           "Tiếp thu, kế thừa những thành tựu mà nhân loại đã đạt được dưới chế độ tư bản",
@@ -91,7 +91,7 @@ export function ContentSection() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <p className="text-lg text-foreground leading-relaxed border-l-4 border-primary pl-4 bg-muted/50 py-3 rounded-r-lg">
+                  <p className="text-lg text-foreground leading-relaxed border-l-4 border-primary pl-4 bg-muted/50 py-3 rounded-r-lg whitespace-pre-line">
                     {concept.content.main}
                   </p>
 

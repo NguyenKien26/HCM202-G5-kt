@@ -60,7 +60,7 @@ export function ExplanationSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Chuyên mục 2</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Vì sao bỏ qua chủ nghĩa tư bản?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Vì sao bỏ qua chủ nghĩa tư bản ?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Vận dụng lý luận vào thực tiễn Việt Nam để trả lời câu hỏi chủ đề
           </p>
@@ -76,19 +76,11 @@ export function ExplanationSection() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
-            <p className="text-white text-lg font-medium">Tại sao đây là sự lựa chọn phù hợp?</p>
+            <p className="text-white text-lg font-medium">Tại sao đây là sự lựa chọn phù hợp ?</p>
           </div>
         </div>
 
-        {/* Quote highlight */}
-        <Card className="mb-10 border-l-4 border-l-primary bg-accent/30">
-          <CardContent className="p-6">
-            <blockquote className="text-lg md:text-xl text-foreground italic leading-relaxed">
-              '"Nước được độc lập mà dân không hưởng hạnh phúc tự do, thì độc lập cũng chẳng có nghĩa lý gì."'
-            </blockquote>
-            <cite className="block mt-3 text-sm text-muted-foreground not-italic">— Hồ Chí Minh Toàn tập, tập 4</cite>
-          </CardContent>
-        </Card>
+        {/* Quote highlight removed as requested */}
 
         {/* Accordion */}
         <div className="space-y-4">

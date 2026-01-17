@@ -33,7 +33,7 @@ export function HeroSection() {
         <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">Tư tưởng Hồ Chí Minh</p>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance mb-8">
-          Lựa chọn lịch sử: <span className="text-primary">{'Tại sao Việt Nam bỏ qua Chủ nghĩa Tư bản?'}</span>
+          Lựa chọn lịch sử: <span className="text-primary">{'Tại sao Việt Nam bỏ qua Chủ nghĩa Tư bản ?'}</span>
         </h1>
 
         {/* Question Card */}
@@ -46,8 +46,10 @@ export function HeroSection() {
               <div className="text-left">
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   Nhiều quốc gia hiện đại hóa qua con đường tư bản chủ nghĩa, nhưng tại sao Hồ Chí Minh lại khẳng định
-                  Việt Nam phải đi con đường khác?{" "}
-                  <strong className="text-foreground">{'"Bỏ qua" có phải là bỏ qua văn minh nhân loại không?'}</strong>
+                  Việt Nam phải đi con đường khác ?
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">{'Bỏ qua có phải là bỏ qua văn minh nhân loại không ?'}</strong>
                 </p>
               </div>
             </div>
@@ -70,23 +72,7 @@ export function HeroSection() {
           <p className="text-sm text-muted-foreground mt-3">Sơ đồ dòng thời gian phát triển</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          <a
-            href="#theory"
-            onClick={(e) => handleNavClick(e, "#theory")}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-          >
-            Khám phá nội dung
-            <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
-            href="#quiz"
-            onClick={(e) => handleNavClick(e, "#quiz")}
-            className="inline-flex items-center px-6 py-3 border border-border bg-card text-foreground rounded-lg font-medium hover:bg-muted transition-colors"
-          >
-            Chơi trắc nghiệm
-          </a>
-        </div>
+        {/* CTA buttons removed as requested */}
       </div>
     </section>
   )

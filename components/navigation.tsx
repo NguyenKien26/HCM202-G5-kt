@@ -10,11 +10,9 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: "Đặt vấn đề", href: "#hero" },
     { label: "Lý thuyết", href: "#theory" },
     { label: "Giải thích", href: "#explanation" },
     { label: "Phân tích", href: "#analysis" },
-    { label: "Trắc nghiệm", href: "#quiz" },
     { label: "Kết luận", href: "#conclusion" },
   ]
 
