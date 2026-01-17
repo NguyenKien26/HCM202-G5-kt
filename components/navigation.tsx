@@ -10,19 +10,22 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: "Đặt vấn đề", href: "#hero" },
-    { label: "Lý thuyết", href: "#theory" },
-    { label: "Giải thích", href: "#explanation" },
-    { label: "Phân tích", href: "#analysis" },
-    { label: "Trắc nghiệm", href: "#quiz" },
-    { label: "Kết luận", href: "#conclusion" },
+    { label: "Đặt vấn đề", href: "#hero", isAnchor: true },
+    { label: "Lý thuyết", href: "#theory", isAnchor: true },
+    { label: "Giải thích", href: "#explanation", isAnchor: true },
+    { label: "Phân tích", href: "#analysis", isAnchor: true },
+    { label: "🎮 Game mô phỏng", href: "/game", isAnchor: false },
+    { label: "Trắc nghiệm", href: "#quiz", isAnchor: true },
+    { label: "Kết luận", href: "#conclusion", isAnchor: true },
   ]
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isAnchor: boolean) => {
+    if (isAnchor) {
+      e.preventDefault()
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
     }
     setIsOpen(false)
   }
@@ -42,7 +45,7 @@ export function Navigation() {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item.href, item.isAnchor)}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
@@ -64,7 +67,7 @@ export function Navigation() {
                 key={item.href}
                 href={item.href}
                 className="block py-2 text-muted-foreground hover:text-primary transition-colors"
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item.href, item.isAnchor)}
               >
                 {item.label}
               </a>
