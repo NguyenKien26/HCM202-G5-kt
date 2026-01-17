@@ -21,14 +21,14 @@ export function QuestionSection() {
                 <p className="text-lg text-foreground leading-relaxed">
                   Nhiều nước trên thế giới đi lên hiện đại hóa thông qua <strong>chủ nghĩa tư bản</strong>. Nhưng Hồ Chí
                   Minh khẳng định Việt Nam phải quá độ lên chủ nghĩa xã hội{" "}
-                  <span className="text-primary font-semibold">"bỏ qua chế độ tư bản chủ nghĩa"</span>.
+                  <span className="text-primary font-semibold">bỏ qua chủ nghĩa tư bản</span>.
                 </p>
 
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <ArrowRight className="h-5 w-5 text-primary" />
                   <p className="text-base">
-                    Vậy điều đó có nghĩa là gì, và tại sao đây là sự lựa chọn phù hợp với đặc điểm lịch sử – xã hội của
-                    Việt Nam?
+                    Vậy bỏ qua chủ nghĩa tư bản có nghĩa là gì, và tại sao đây là sự lựa chọn phù hợp với đặc điểm lịch
+                    sử – xã hội của Việt Nam?
                   </p>
                 </div>
               </div>

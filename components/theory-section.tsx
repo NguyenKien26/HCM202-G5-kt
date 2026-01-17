@@ -69,7 +69,7 @@ export function TheorySection() {
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Chuyên mục 1</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Lý thuyết cốt lõi</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Các luận điểm then chốt trong tư tưởng Hồ Chí Minh về thời kỳ quá độ (Mục 3.2.3)
+            Quá độ là gì? Các luận điểm then chốt trong tư tưởng Hồ Chí Minh về thời kỳ quá độ
           </p>
         </div>
 

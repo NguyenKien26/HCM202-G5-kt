@@ -2,10 +2,10 @@
 
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
+import { QuestionSection } from "@/components/question-section"
 import { TheorySection } from "@/components/theory-section"
 import { ExplanationSection } from "@/components/explanation-section"
 import { AnalysisSection } from "@/components/analysis-section"
-import { QuizSection } from "@/components/quiz-section"
 import { ConclusionSection } from "@/components/conclusion-section"
 import { Footer } from "@/components/footer"
 
@@ -15,10 +15,10 @@ export default function App() {
       <Navigation />
       <main>
         <HeroSection />
+        <QuestionSection />
         <TheorySection />
         <ExplanationSection />
         <AnalysisSection />
-        <QuizSection />
         <ConclusionSection />
       </main>
       <Footer />

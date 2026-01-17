@@ -33,7 +33,7 @@ export function HeroSection() {
         <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">Tư tưởng Hồ Chí Minh</p>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance mb-8">
-          Lựa chọn lịch sử: <span className="text-primary">{'Tại sao Việt Nam "Bỏ qua" Chủ nghĩa Tư bản?'}</span>
+          Lựa chọn lịch sử: <span className="text-primary">{'Tại sao Việt Nam bỏ qua Chủ nghĩa Tư bản?'}</span>
         </h1>
 
         {/* Question Card */}
