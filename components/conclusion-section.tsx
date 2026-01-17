@@ -71,8 +71,8 @@ export function ConclusionSection() {
         </div>
 
         {/* Quote Card */}
-        <Card className="mb-12 bg-primary text-primary-foreground">
-          <CardContent className="p-8">
+        <Card className="mb-12 bg-primary text-primary-foreground overflow-hidden relative">
+          <CardContent className="p-8 relative z-10">
             <Quote className="h-10 w-10 mb-4 opacity-50" />
             <blockquote className="text-xl sm:text-2xl font-medium leading-relaxed mb-4 text-balance">
               {

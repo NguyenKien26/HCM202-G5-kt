@@ -1,11 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { AlertTriangle, Shield, Users, Zap } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function AnalysisSection() {
   const [activeCard, setActiveCard] = useState(0)
+
+  const headerImage = "https://baonamdinh.vn/file/e7837c02816d130b0181a995d7ad7e96/082024/untitled-4_20240829111043.jpg"
 
   const analyses = [
     {
@@ -70,8 +73,22 @@ export function AnalysisSection() {
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Chuyên mục 3</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Phân tích con đường đặc thù</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Làm rõ tính chất "đặc thù" của cách mạng Việt Nam: Khó khăn và Tất yếu
+            {'Làm rõ tính chất "đặc thù" của cách mạng Việt Nam: Khó khăn và Tất yếu'}
           </p>
+        </div>
+
+        <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden mb-10">
+          <Image
+            src={headerImage || "/placeholder.svg"}
+            alt="Phân tích con đường đặc thù"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="text-white text-lg font-medium">Con đường phát triển đặc thù của Việt Nam</p>
+          </div>
         </div>
 
         {/* Cards Grid */}
