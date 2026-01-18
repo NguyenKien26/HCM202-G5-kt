@@ -135,7 +135,7 @@ export const gameRounds: Round[] = [
         description: 'Bơm tiền xây hạ tầng, ưu tiên xóa đói giảm nghèo.',
         economicChange: -5,
         peopleChange: 20,
-        securityChange: 0,
+        securityChange: 5,
         label: 'yellow',
       },
     },
@@ -193,7 +193,7 @@ export const gameRounds: Round[] = [
         description: '"Sức mạnh mềm". Đầu tư làm phim, nhạc, game Việt để xuất khẩu văn hóa, kiểm soát tin giả bằng luật an ninh mạng.',
         economicChange: 10,
         peopleChange: 10,
-        securityChange: 5,
+        securityChange: 10,
         label: 'yellow',
       },
       C: {
@@ -226,17 +226,80 @@ export interface EndingInfo {
   emoji: string;
 }
 
+// Helper: get ending info by type (for display components)
+export function getEndingInfoByType(type: EndingType): EndingInfo {
+  switch (type) {
+    case 'bad-ending':
+      return {
+        type,
+        title: '💀 BAD ENDING: QUỐC GIA THẤT BẠI',
+        description:
+          'Rất tiếc, đất nước đã rơi vào hỗn loạn (vỡ nợ/bạo loạn/chiến tranh). Lịch sử đã dừng lại ở đây. Các bạn cần học lại môn Lịch sử Đảng!',
+        emoji: '💀',
+      };
+    case 'chaos':
+      return {
+        type,
+        title: '🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
+        description:
+          'Chính sách tiền hậu bất nhất. Sáng nắng chiều mưa khiến lòng dân ly tán. Đất nước nổ ra cách mạng màu. Game Over.',
+        emoji: '🎭',
+      };
+    case 'tiger':
+      return {
+        type,
+        title: '💸 NORMAL ENDING: CON HỔ TƯ BẢN',
+        description:
+          'Việt Nam trở thành một nước công nghiệp phát triển cực thịnh! Tuy nhiên, bị các tập đoàn chi phối. Phân hóa giàu nghèo khủng khiếp. Các bạn giàu, nhưng bất bình đẳng như trong phim hàn quốc.',
+        emoji: '💸',
+      };
+    case 'fortress':
+      return {
+        type,
+        title: '🪖 NORMAL ENDING: PHÁO ĐÀI CÔ ĐỘC',
+        description:
+          'Đất nước cực kỳ ổn định, không ai dám xâm phạm. Nhưng dân chúng nghèo đói, công nghệ lạc hậu so với thế giới 50 năm. Chúng ta sống mòn mỏi sau lũy tre làng.',
+        emoji: '🪖',
+      };
+    case 'tieukhang':
+      return {
+        type,
+        title: '🌿 GOOD ENDING: TIỂU KHANG (ẤM NO)',
+        description:
+          'Chúc mừng! Các bạn đã giữ vững độc lập chủ quyền. Dân có cơm ăn áo mặc, xã hội công bằng. Tuy chưa phải cường quốc, nhưng Việt Nam là điểm đến hòa bình của thế giới.',
+        emoji: '🌿',
+      };
+    case 'trueending':
+      return {
+        type,
+        title: '🏆 TRUE ENDING: CƯỜNG QUỐC XHCN (HÓA RỒNG)',
+        description:
+          'Xuất sắc! Các bạn đã giải được bài toán khó nhất lịch sử: Vừa tăng trưởng kinh tế thần tốc, vừa giữ được công bằng xã hội và chủ quyền. Việt Nam sánh vai với các cường quốc năm châu!',
+        emoji: '🏆',
+      };
+    default:
+      return {
+        type,
+        title: '🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
+        description:
+          'Chính sách tiền hậu bất nhất. Sáng nắng chiều mưa khiến lòng dân ly tán. Đất nước nổ ra cách mạng màu. Game Over.',
+        emoji: '🎭',
+      };
+  }
+}
+
 export function calculateEnding(
   economic: number,
   people: number,
   security: number,
   choices: string[]
 ): EndingInfo {
-  // Check for bad ending (negative stats)
+  // 💀 BAD ENDING: QUỐC GIA THẤT BẠI
+  // Điều kiện: Bất kỳ chỉ số nào < 0 trong quá trình chơi
   if (economic < 0 || people < 0 || security < 0) {
     return {
       type: 'bad-ending',
-      title: '💀 QUỐC GIA THẤT BẠI',
+      title: '💀 BAD ENDING: QUỐC GIA THẤT BẠI',
       description:
         'Rất tiếc, đất nước đã rơi vào hỗn loạn (vỡ nợ/bạo loạn/chiến tranh). Lịch sử đã dừng lại ở đây. Các bạn cần học lại môn Lịch sử Đảng!',
       emoji: '💀',
@@ -248,65 +311,83 @@ export function calculateEnding(
   const blueCount = choices.filter((c) => c === 'blue').length;
   const yellowCount = choices.filter((c) => c === 'yellow').length;
 
-  // Check for chaos (balanced choices or low people)
-  if (people < 40) {
-    return {
-      type: 'chaos',
-      title: '🎭 LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
-      description:
-        'Chính sách tiền hậu bất nhất. Sáng nắng chiều mưa khiến lòng dân ly tán. Đất nước nổ ra cách mạng màu. Game Over.',
-      emoji: '🎭',
-    };
-  }
+  // Determine which label is dominant
+  const maxCount = Math.max(redCount, blueCount, yellowCount);
+  const labelsWithMaxCount = [
+    redCount === maxCount ? 'red' : null,
+    blueCount === maxCount ? 'blue' : null,
+    yellowCount === maxCount ? 'yellow' : null,
+  ].filter((label) => label !== null);
 
-  // Check for true ending (yellow dominant + all stats > 70)
-  if (yellowCount >= 3 && economic > 70 && people > 70 && security > 70) {
+  // 🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)
+  // Điều kiện: Các nhãn bằng nhau (không có nhãn nào chiếm đa số) HOẶC Lòng dân < 40
+  // Lưu ý: trì hoãn kiểm tra chaos đến sau khi xét các ending theo nhãn đa số
+  const isBalanced = labelsWithMaxCount.length > 1;
+
+  // 🏆 TRUE ENDING: CƯỜNG QUỐC XHCN (HÓA RỒNG)
+  // Điều kiện: 4 hoặc 5 nhãn ⭐ [Định Hướng] VÀ Cả 3 chỉ số đều >= 70
+  if (yellowCount >= 4 && economic >= 70 && people >= 70 && security >= 70) {
     return {
       type: 'trueending',
-      title: '🏆 CƯỜNG QUỐC XHCN (HÓA RỒNG)',
+      title: '🏆 TRUE ENDING: CƯỜNG QUỐC XHCN (HÓA RỒNG)',
       description:
         'Xuất sắc! Các bạn đã giải được bài toán khó nhất lịch sử: Vừa tăng trưởng kinh tế thần tốc, vừa giữ được công bằng xã hội và chủ quyền. Việt Nam sánh vai với các cường quốc năm châu!',
       emoji: '🏆',
     };
   }
 
-  // Check for tieukhang (yellow dominant + economic < 80)
+  // 🌿 GOOD ENDING: TIỂU KHANG (ẤM NO)
+  // Điều kiện: Đa số nhãn ⭐ [Định Hướng], nhưng chưa đủ điều kiện TRUE ENDING
   if (yellowCount >= 3) {
     return {
       type: 'tieukhang',
-      title: '🌿 TIỂU KHANG (ẤM NO)',
+      title: '🌿 GOOD ENDING: TIỂU KHANG (ẤM NO)',
       description:
         'Chúc mừng! Các bạn đã giữ vững độc lập chủ quyền. Dân có cơm ăn áo mặc, xã hội công bằng. Tuy chưa phải cường quốc, nhưng Việt Nam là điểm đến hòa bình của thế giới.',
       emoji: '🌿',
     };
   }
 
-  // Check for blue ending (tiger capitalism)
+  // 💸 NORMAL ENDING: CON HỔ TƯ BẢN
+  // Điều kiện: Đa số nhãn 🔵 [Tự Do]
   if (blueCount >= 3) {
     return {
       type: 'tiger',
-      title: '💸 CON HỔ TƯ BẢN',
+      title: '💸 NORMAL ENDING: CON HỔ TƯ BẢN',
       description:
         'Việt Nam trở thành một nước công nghiệp phát triển cực thịnh! Tuy nhiên, bị các tập đoàn chi phối. Phân hóa giàu nghèo khủng khiếp. Các bạn giàu, nhưng bất bình đẳng như trong phim hàn quốc.',
       emoji: '💸',
     };
   }
 
-  // Check for red ending (fortress)
+  // 🪖 NORMAL ENDING: PHÁO ĐÀI CÔ ĐỘC
+  // Điều kiện: Đa số nhãn 🔴 [Cứng Rắn]
   if (redCount >= 3) {
     return {
       type: 'fortress',
-      title: '🪖 PHÁO ĐÀI CÔ ĐỘC',
+      title: '🪖 NORMAL ENDING: PHÁO ĐÀI CÔ ĐỘC',
       description:
         'Đất nước cực kỳ ổn định, không ai dám xâm phạm. Nhưng dân chúng nghèo đói, công nghệ lạc hậu so với thế giới 50 năm. Chúng ta sống mòn mỏi sau lũy tre làng.',
       emoji: '🪖',
     };
   }
 
-  // Default to chaos if balanced
+  // 🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)
+  // Đưa xuống cuối: nếu không có nhãn đa số phù hợp và lòng dân thấp/nhãn cân bằng
+  if (isBalanced || people < 40) {
+    return {
+      type: 'chaos',
+      title: '🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
+      description:
+        'Chính sách tiền hậu bất nhất. Sáng nắng chiều mưa khiến lòng dân ly tán. Đất nước nổ ra cách mạng màu. Game Over.',
+      emoji: '🎭',
+    };
+  }
+
+  // Fallback (should not reach here if logic is correct)
   return {
     type: 'chaos',
-    title: '🎭 LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
+    title: '🎭 BAD ENDING: LOẠN SẮC MÀU (DIỄN BIẾN HÒA BÌNH)',
     description:
       'Chính sách tiền hậu bất nhất. Sáng nắng chiều mưa khiến lòng dân ly tán. Đất nước nổ ra cách mạng màu. Game Over.',
     emoji: '🎭',

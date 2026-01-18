@@ -1,6 +1,6 @@
 'use client';
 
-import { EndingType, calculateEnding } from '@/lib/gameData';
+import { EndingType, getEndingInfoByType } from '@/lib/gameData';
 
 interface EndingDisplayProps {
   ending: EndingType;
@@ -12,7 +12,7 @@ interface EndingDisplayProps {
 }
 
 export function EndingDisplay({ ending, stats }: EndingDisplayProps) {
-  const endingInfo = calculateEnding(stats.economic, stats.people, stats.security, []);
+  const endingInfo = getEndingInfoByType(ending);
 
   const getEndingColor = (type: EndingType) => {
     switch (type) {
